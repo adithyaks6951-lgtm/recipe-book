@@ -1,0 +1,15 @@
+{
+  "name": "recipe-book-project",
+  "version": "1.0.0",
+  "description": "Full Stack Recipe Book Web Application built with MERN stack",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "backend": "npm --prefix backend start",
+    "backend:dev": "npm --prefix backend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": ["mern", "mongodb-atlas", "express", "react", "node", "recipe-book"],
+  "author": "Full Stack Developer",
+  "license": "ISC"
+}
