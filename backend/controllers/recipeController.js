@@ -1,75 +1,87 @@
 const mongoose = require('mongoose');
 const Recipe = require('../models/Recipe');
 
-// In-memory fallback store initialized with sample recipes if Atlas is offline/unreachable
+// Initial sample recipes used if database is offline
 let inMemoryRecipes = [
   {
     _id: new mongoose.Types.ObjectId().toString(),
-    name: 'Fluffy Buttermilk Pancakes',
+    name: 'Kerala Egg Roast with Appam',
     category: 'Breakfast',
-    cookingTime: 20,
+    cookingTime: 25,
     ingredients: [
-      '2 cups all-purpose flour',
-      '2 tbsp sugar',
-      '2 tsp baking powder',
-      '1/2 tsp salt',
-      '2 large eggs',
-      '1 3/4 cups buttermilk',
-      '1/4 cup melted butter'
+      '4 hard-boiled eggs, sliced in halves',
+      '3 large red onions, thinly sliced',
+      '2 tomatoes, finely chopped',
+      '1 green chili, slit',
+      '1 tsp ginger-garlic paste',
+      '1/2 tsp turmeric powder',
+      '1 tbsp Kashmiri chili powder',
+      '1 tsp garam masala',
+      'Fresh curry leaves and coconut oil'
     ],
     preparationSteps: [
-      'Whisk dry ingredients in a bowl.',
-      'In a separate bowl, whisk buttermilk, eggs, and melted butter.',
-      'Combine wet and dry mixtures gently.',
-      'Cook on a hot griddle until bubbles form, then flip until golden.',
-      'Serve warm with maple syrup and fresh fruit.'
+      'Heat coconut oil in a pan, add fresh curry leaves and sliced onions.',
+      'Sauté onions on medium heat with a pinch of salt until deeply golden brown.',
+      'Add ginger-garlic paste and green chili; cook for 1 minute until raw aroma fades.',
+      'Stir in turmeric powder, Kashmiri chili powder, and garam masala on low flame.',
+      'Add chopped tomatoes and cook until soft and oil separates from the masala.',
+      'Gently place the boiled egg halves into the rich gravy and coat them thoroughly.',
+      'Simmer for 3 minutes and serve hot with fluffy fermented appams or parottas.'
     ],
     createdAt: new Date(Date.now() - 3600000).toISOString(),
     updatedAt: new Date(Date.now() - 3600000).toISOString()
   },
   {
     _id: new mongoose.Types.ObjectId().toString(),
-    name: 'Creamy Tuscan Garlic Salmon',
-    category: 'Dinner',
-    cookingTime: 25,
+    name: 'Homestyle Paneer Butter Masala',
+    category: 'Lunch',
+    cookingTime: 30,
     ingredients: [
-      '2 fresh salmon fillets',
-      '2 tbsp butter',
-      '3 cloves minced garlic',
-      '1/2 cup sun-dried tomatoes',
-      '2 cups fresh baby spinach',
-      '3/4 cup heavy cream',
-      '1/4 cup grated Parmesan cheese'
+      '250g fresh paneer cubes',
+      '4 ripe tomatoes, puréed',
+      '2 medium onions, finely chopped',
+      '10 whole cashew nuts, soaked and blended into paste',
+      '2 tbsp unsalted butter',
+      '1 tbsp cooking oil',
+      '1 tsp cumin seeds',
+      '1 tbsp ginger-garlic paste',
+      '1/2 cup fresh cream',
+      '1 tsp crushed kasuri methi'
     ],
     preparationSteps: [
-      'Season salmon with salt and pepper, then sear in skillet for 5 mins per side.',
-      'Remove salmon. Sauté garlic and sun-dried tomatoes in remaining butter.',
-      'Add fresh baby spinach and stir until wilted.',
-      'Pour heavy cream and Parmesan, simmering until sauce thickens.',
-      'Return salmon to pan, spoon sauce over fillets, and serve hot.'
+      'Heat 1 tbsp butter and oil in a heavy-bottomed kadai. Crackle cumin seeds.',
+      'Sauté chopped onions until golden, then add ginger-garlic paste and cook for 1 minute.',
+      'Pour in fresh tomato purée along with chili powder, coriander powder, and salt.',
+      'Stir in cashew paste with warm water to create a velvety gravy base.',
+      'Gently drop in fresh paneer cubes and simmer on low heat for 5 minutes.',
+      'Finish with butter, fresh cream, and crushed kasuri methi before serving.'
     ],
     createdAt: new Date(Date.now() - 7200000).toISOString(),
     updatedAt: new Date(Date.now() - 7200000).toISOString()
   },
   {
     _id: new mongoose.Types.ObjectId().toString(),
-    name: 'Classic Caesar Salad',
-    category: 'Lunch',
-    cookingTime: 15,
+    name: 'Thalassery Chicken Biryani',
+    category: 'Dinner',
+    cookingTime: 45,
     ingredients: [
-      '1 head romaine lettuce, chopped',
-      '1/2 cup shaved Parmesan cheese',
-      '1 cup garlic croutons',
-      '3 tbsp olive oil',
-      '2 tbsp mayonnaise',
-      '1 tbsp lemon juice',
-      '1 tsp Dijon mustard'
+      '500g chicken, cut into curry pieces',
+      '2 cups Kaima (Jeerakasala) rice',
+      '3 large onions, sliced and fried crisp',
+      '1/2 cup thick fresh curd (yogurt)',
+      '1 tbsp crushed ginger, garlic, and green chilis',
+      '1/4 cup chopped mint leaves',
+      '1/4 cup chopped fresh coriander',
+      '3 tbsp pure ghee',
+      'Whole spices: cloves, cardamom, cinnamon, star anise'
     ],
     preparationSteps: [
-      'Wash, dry, and chop the romaine lettuce.',
-      'Whisk olive oil, mayonnaise, lemon juice, and Dijon mustard in a small bowl.',
-      'Toss chopped romaine with dressing in a large bowl.',
-      'Top with garlic croutons and shaved Parmesan.'
+      'Marinate chicken with yogurt, crushed aromatics, and spices for 30 minutes.',
+      'Cook marinated chicken with fried onions, mint, and coriander until tender.',
+      'Cook seasoned kaima rice in ghee and whole spices until 85% done.',
+      'Layer fragrant rice over the chicken masala.',
+      'Garnish with golden fried onions, cashews, raisins, and ghee.',
+      'Seal tightly with lid and dum-cook on low heat for 15 minutes.'
     ],
     createdAt: new Date(Date.now() - 10800000).toISOString(),
     updatedAt: new Date(Date.now() - 10800000).toISOString()
@@ -78,8 +90,8 @@ let inMemoryRecipes = [
 
 const isDbConnected = () => mongoose.connection.readyState === 1;
 
-// Helper to normalize array input (string with newlines or commas, or array)
-const normalizeArray = (input) => {
+// Helper to normalize input into clean list of strings
+const parseItemList = (input) => {
   if (Array.isArray(input)) {
     return input.map((item) => String(item).trim()).filter((item) => item.length > 0);
   }
@@ -92,8 +104,7 @@ const normalizeArray = (input) => {
   return [];
 };
 
-// @desc    Get all recipes (with optional category & search filter)
-// @route   GET /api/recipes
+// Get all recipes with search and category filtering
 exports.getRecipes = async (req, res) => {
   try {
     const { category, search } = req.query;
@@ -113,12 +124,11 @@ exports.getRecipes = async (req, res) => {
       return res.status(200).json({
         success: true,
         count: recipes.length,
-        data: recipes,
-        storage: 'MongoDB Atlas'
+        data: recipes
       });
     }
 
-    // Fallback: In-memory store
+    // In-memory fallback
     let filtered = [...inMemoryRecipes];
     if (category && category !== 'All') {
       filtered = filtered.filter((r) => r.category.toLowerCase() === category.toLowerCase());
@@ -136,20 +146,18 @@ exports.getRecipes = async (req, res) => {
     return res.status(200).json({
       success: true,
       count: filtered.length,
-      data: filtered,
-      storage: 'In-Memory (Atlas connecting / offline)'
+      data: filtered
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: 'Server error while fetching recipes',
+      message: 'Failed to fetch recipes',
       error: error.message
     });
   }
 };
 
-// @desc    Get single recipe by ID
-// @route   GET /api/recipes/:id
+// Get single recipe by ID
 exports.getRecipeById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -174,7 +182,6 @@ exports.getRecipeById = async (req, res) => {
       });
     }
 
-    // In-memory fallback
     const recipe = inMemoryRecipes.find((r) => String(r._id) === String(id));
     if (!recipe) {
       return res.status(404).json({
@@ -190,41 +197,30 @@ exports.getRecipeById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: 'Server error while fetching recipe details',
+      message: 'Failed to fetch recipe details',
       error: error.message
     });
   }
 };
 
-// @desc    Create new recipe
-// @route   POST /api/recipes
+// Create a new recipe
 exports.createRecipe = async (req, res) => {
   try {
     const { name, category, ingredients, preparationSteps, cookingTime } = req.body;
 
-    // Validation
     const errors = [];
-    if (!name || !name.trim()) {
-      errors.push('Recipe name is required');
-    }
+    if (!name || !name.trim()) errors.push('Recipe name is required');
+    if (!category || !category.trim()) errors.push('Category is required');
 
-    if (!category || !category.trim()) {
-      errors.push('Category is required');
-    }
+    const parsedIngredients = parseItemList(ingredients);
+    if (parsedIngredients.length === 0) errors.push('At least one ingredient is required');
 
-    const parsedIngredients = normalizeArray(ingredients);
-    if (parsedIngredients.length === 0) {
-      errors.push('At least one ingredient is required');
-    }
-
-    const parsedSteps = normalizeArray(preparationSteps);
-    if (parsedSteps.length === 0) {
-      errors.push('At least one preparation step is required');
-    }
+    const parsedSteps = parseItemList(preparationSteps);
+    if (parsedSteps.length === 0) errors.push('At least one preparation step is required');
 
     const parsedTime = Number(cookingTime);
     if (isNaN(parsedTime) || parsedTime <= 0) {
-      errors.push('Cooking time must be a positive number greater than 0');
+      errors.push('Cooking time must be a positive number of minutes');
     }
 
     if (errors.length > 0) {
@@ -251,7 +247,6 @@ exports.createRecipe = async (req, res) => {
       });
     }
 
-    // In-memory fallback
     const newRecipe = {
       _id: new mongoose.Types.ObjectId().toString(),
       name: name.trim(),
@@ -266,7 +261,7 @@ exports.createRecipe = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: 'Recipe added successfully!',
+      message: 'Recipe created successfully',
       data: newRecipe
     });
   } catch (error) {
@@ -280,49 +275,39 @@ exports.createRecipe = async (req, res) => {
     }
     return res.status(500).json({
       success: false,
-      message: 'Server error while creating recipe',
+      message: 'Failed to create recipe',
       error: error.message
     });
   }
 };
 
-// @desc    Update recipe by ID
-// @route   PUT /api/recipes/:id
+// Update recipe by ID
 exports.updateRecipe = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, category, ingredients, preparationSteps, cookingTime } = req.body;
 
     const errors = [];
-    if (name !== undefined && !name.trim()) {
-      errors.push('Recipe name cannot be empty');
-    }
-
-    if (category !== undefined && !category.trim()) {
-      errors.push('Category cannot be empty');
-    }
+    if (name !== undefined && !name.trim()) errors.push('Recipe name cannot be empty');
+    if (category !== undefined && !category.trim()) errors.push('Category cannot be empty');
 
     let parsedIngredients;
     if (ingredients !== undefined) {
-      parsedIngredients = normalizeArray(ingredients);
-      if (parsedIngredients.length === 0) {
-        errors.push('At least one ingredient is required');
-      }
+      parsedIngredients = parseItemList(ingredients);
+      if (parsedIngredients.length === 0) errors.push('At least one ingredient is required');
     }
 
     let parsedSteps;
     if (preparationSteps !== undefined) {
-      parsedSteps = normalizeArray(preparationSteps);
-      if (parsedSteps.length === 0) {
-        errors.push('At least one preparation step is required');
-      }
+      parsedSteps = parseItemList(preparationSteps);
+      if (parsedSteps.length === 0) errors.push('At least one preparation step is required');
     }
 
     let parsedTime;
     if (cookingTime !== undefined) {
       parsedTime = Number(cookingTime);
       if (isNaN(parsedTime) || parsedTime <= 0) {
-        errors.push('Cooking time must be a positive number greater than 0');
+        errors.push('Cooking time must be a positive number of minutes');
       }
     }
 
@@ -365,7 +350,6 @@ exports.updateRecipe = async (req, res) => {
       });
     }
 
-    // In-memory fallback
     const index = inMemoryRecipes.findIndex((r) => String(r._id) === String(id));
     if (index === -1) {
       return res.status(404).json({
@@ -388,7 +372,7 @@ exports.updateRecipe = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Recipe updated successfully!',
+      message: 'Recipe updated successfully',
       data: updatedRecipe
     });
   } catch (error) {
@@ -402,14 +386,13 @@ exports.updateRecipe = async (req, res) => {
     }
     return res.status(500).json({
       success: false,
-      message: 'Server error while updating recipe',
+      message: 'Failed to update recipe',
       error: error.message
     });
   }
 };
 
-// @desc    Delete recipe by ID
-// @route   DELETE /api/recipes/:id
+// Delete recipe by ID
 exports.deleteRecipe = async (req, res) => {
   try {
     const { id } = req.params;
@@ -438,7 +421,6 @@ exports.deleteRecipe = async (req, res) => {
       });
     }
 
-    // In-memory fallback
     const index = inMemoryRecipes.findIndex((r) => String(r._id) === String(id));
     if (index === -1) {
       return res.status(404).json({
@@ -451,12 +433,12 @@ exports.deleteRecipe = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Recipe deleted successfully!'
+      message: 'Recipe deleted successfully'
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: 'Server error while deleting recipe',
+      message: 'Failed to delete recipe',
       error: error.message
     });
   }
