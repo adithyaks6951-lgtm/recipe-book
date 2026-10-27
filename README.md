@@ -2,6 +2,12 @@
 
 A Recipe Book web application built with MongoDB, Express.js, React.js, and Node.js. It allows users to create, view, edit, and delete their favorite recipes with real-time database updates.
 
+## Live Demo
+- **Hosted Application**: [https://recipe-book-ten-beta.vercel.app](https://recipe-book-ten-beta.vercel.app)
+- **API Health Check**: [https://recipe-book-ten-beta.vercel.app/api/health](https://recipe-book-ten-beta.vercel.app/api/health)
+
+---
+
 ## Features
 - **Add Recipe**: Form with validation for recipe name, category (Breakfast, Lunch, Dinner, Snack, Dessert, Beverage), cooking time, ingredients, and preparation steps.
 - **View Recipes**: Clean card grid displaying recipe name, category tag, and cooking time.
@@ -49,6 +55,7 @@ recipe-book/
 │   └── vite.config.js
 ├── .env
 ├── package.json
+├── render.yaml
 └── README.md
 ```
 

@@ -1,15 +1,23 @@
 {
-  "name": "recipe-book-project",
+  "name": "recipe-book",
   "version": "1.0.0",
-  "description": "Full Stack Recipe Book Web Application built with MERN stack",
+  "description": "Recipe Book web application using MERN Stack",
+  "main": "backend/server.js",
   "scripts": {
-    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "node backend/server.js",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "backend": "npm --prefix backend start",
-    "backend:dev": "npm --prefix backend run dev",
-    "frontend": "npm --prefix frontend run dev",
-    "build:frontend": "npm --prefix frontend run build"
+    "frontend": "npm --prefix frontend run dev"
   },
-  "keywords": ["mern", "mongodb-atlas", "express", "react", "node", "recipe-book"],
-  "author": "Full Stack Developer",
+  "keywords": [
+    "mern",
+    "recipe-book",
+    "mongodb",
+    "express",
+    "react",
+    "node"
+  ],
+  "author": "Adarsh",
   "license": "ISC"
 }

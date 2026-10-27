@@ -3,7 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables from backend/.env or root .env
+// Load environment variables
 dotenv.config({ path: path.join(__dirname, '.env') });
 if (!process.env.MONGO_URI) {
   dotenv.config({ path: path.join(__dirname, '..', '.env') });
@@ -29,9 +29,20 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Recipe Book API is running successfully' });
 });
 
-// 404 handler
-app.use((req, res, next) => {
-  res.status(404).json({ success: false, message: 'Resource not found' });
+// Serve frontend static files in production / Render
+const frontendDist = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDist));
+
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  const indexHtml = path.join(frontendDist, 'index.html');
+  res.sendFile(indexHtml, (err) => {
+    if (err) {
+      res.status(200).send('Recipe Book API is running');
+    }
+  });
 });
 
 // Global error handler
@@ -44,6 +55,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
