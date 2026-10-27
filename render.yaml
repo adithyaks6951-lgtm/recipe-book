@@ -9,4 +9,4 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
-        value: mongodb+srv://adarsh225711_db_user:FTnAF3_zSFXMXY5@cluster0.jsmtxxj.mongodb.net/recipe_book?retryWrites=true&w=majority
+        value: mongodb+srv://adithyaks6951_db_user:Wu1GLPZAMaQNRI8o@cluster0.lajib12.mongodb.net/recipe_book?retryWrites=true&w=majority

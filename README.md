@@ -65,7 +65,7 @@ recipe-book/
 The `.env` file is included in the project for evaluation:
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://adarsh225711_db_user:FTnAF3_zSFXMXY5@cluster0.jsmtxxj.mongodb.net/recipe_book?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://adithyaks6951_db_user:Wu1GLPZAMaQNRI8o@cluster0.lajib12.mongodb.net/recipe_book?retryWrites=true&w=majority
 ```
 
 ---
